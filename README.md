@@ -23,6 +23,7 @@ This section contains generic categories of papers. For initializing my in depth
   - Regularizer used by applying a binary (although sometimes stochastic-but not in this paper) mask over the parameter vector. Analagous to bagging
 * Network In Network [[link]](https://arxiv.org/pdf/1312.4400.pdf)
   - Uses mlpconv layers in their architecture-basically just 1x1 convolutional layers that are really just mlps repeated over the whole spatial domain (WxH).
+  - Uses global average pooling-which they note may be understood as a regularizer.
 
 
 
