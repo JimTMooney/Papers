@@ -54,6 +54,18 @@ This section contains generic categories of papers. For initializing my in depth
   - Regularizes model by using label smoothing.
 * Improving neural networks by preventing co-adaptation of feature detectors [[link]](https://arxiv.org/pdf/1207.0580.pdf)
   - Original dropout paper
+* Training Very Deep Networks [[link]](https://arxiv.org/pdf/1507.06228.pdf)
+  - Highway networks -> kind of a precursor to resnets -> they borrow on LSTMS and use a transfer gate to choose how much input to pass thruogh from the previous layer.
+* FITNETS: HINTS FOR THIN DEEP NETS [[link]](https://arxiv.org/pdf/1412.6550.pdf)
+  - Builds on knowledge distillation by training student networks to have the same internal activations as the techer network (the student networks also use thinner width)
+* Distilling the Knowledge in a Neural Network [[link]](https://arxiv.org/pdf/1503.02531.pdf)
+  - Knowledge distillation -> train so that cross entropy between post-softmax distributions of trained teacher and current student is minimized (along with actual objective
+* Curriculum Learning [[link]](https://ronan.collobert.com/pub/matos/2009_curriculum_icml.pdf)
+  - Use easier samples first, then gradually increase to more difficult examples in the course of training -> borrows on concept of shaping from psychology
+  - Can be considered similar in nature to continuation methods
+  - Shapes Libraries! I have been looking for these. Some of the experiments in this paper use BasicShapes and GeomShapes -> follow up on this for project purposes
+* Deeply-Supervised Nets [[link]](https://arxiv.org/pdf/1409.5185.pdf)
+  - Each layer of the network attempts to predict the output at the same time as the final layer. This way the gradient can better be nearer to an actual prediction regardless of layer.
 
 ## My Projects
 This section contains references to papers useful for specific projects I have worked on. 
