@@ -2,7 +2,7 @@
 A repository to keep track of papers/articles I have read with their corresponding summaries. This is useful as a sanity check for remembering what each paper does for future citations. The papers are organized both by general category as well as specific projects I have worked on.
 
 ## General Categories
-This section contains generic categories of papers. For initializing my in depth understanding of this field, I lifted several hundred of the first papers-as well as the initial organization of this repo-from https://github.com/maziarraissi/Applied-Deep-Learning (what a fantastic resource by the way for anyone interested in the field of deep learning).
+This section contains generic categories of papers. For initializing my in depth understanding of this field, I lifted several hundred of the first papers-as well as the initial organization of this repo-from https://github.com/maziarraissi/Applied-Deep-Learning (which is a fantastic resource for anyone interested in the field of deep learning).
 
 ### Optimization
 * An overview of gradient descent algorithms [[link]](https://ruder.io/optimizing-gradient-descent/)
@@ -57,7 +57,7 @@ This section contains generic categories of papers. For initializing my in depth
 * Training Very Deep Networks [[link]](https://arxiv.org/pdf/1507.06228.pdf)
   - Highway networks -> kind of a precursor to resnets -> they borrow on LSTMS and use a transfer gate to choose how much input to pass thruogh from the previous layer.
 * FITNETS: HINTS FOR THIN DEEP NETS [[link]](https://arxiv.org/pdf/1412.6550.pdf)
-  - Builds on knowledge distillation by training student networks to have the same internal activations as the techer network (the student networks also use thinner width)
+  - Builds on knowledge distillation by training student networks to have the same internal activations as the techer network (the student networks also use thinner width) -> use similary between states using parameterized transform if hidden state sizes differ
 * Distilling the Knowledge in a Neural Network [[link]](https://arxiv.org/pdf/1503.02531.pdf)
   - Knowledge distillation -> train so that cross entropy between post-softmax distributions of trained teacher and current student is minimized (along with actual objective
 * Curriculum Learning [[link]](https://ronan.collobert.com/pub/matos/2009_curriculum_icml.pdf)
@@ -66,6 +66,21 @@ This section contains generic categories of papers. For initializing my in depth
   - Shapes Libraries! I have been looking for these. Some of the experiments in this paper use BasicShapes and GeomShapes -> follow up on this for project purposes
 * Deeply-Supervised Nets [[link]](https://arxiv.org/pdf/1409.5185.pdf)
   - Each layer of the network attempts to predict the output at the same time as the final layer. This way the gradient can better be nearer to an actual prediction regardless of layer.
+* Deep Residual Learning for Image Recognition [[link]](https://arxiv.org/pdf/1512.03385.pdf)
+  - ResNets -> Use residual connections to better allow information to propagate forward and backward. Allow for information highways.
+  - I like to think of this through the lens of communication -> inputs and outputs have to talk and longer paths only make the stuff communicated further from the intention
+* Identity Mappings in Deep Residual Networks [[link]](https://arxiv.org/pdf/1603.05027.pdf)
+  - Gathered tests on performance of various residual blocks. Found that pre-activation works best as it simply allows gradient to fully flow backward without scaling or loss of information. 
+  - Tested various gating procedures, dropout, constant scaling as well as choosing the location of BN, ReLU, etc. 
+* Densely Connected Convolutional Networks [[link]](https://arxiv.org/pdf/1608.06993.pdf)
+  - DenseNet -> Use denseblocks - in each denseblock all previous layers connect with later layers.
+* Deep Networks with Stochastic Depth [[link]](https://arxiv.org/pdf/1603.09382.pdf)
+  - Use ResNet, but randomly drop layers -> later layers are dropped with a higher probability. Leads to networks which train faster but are still appropriately expressive
+* Aggregated Residual Transformations for Deep Neural Networks [[link]](https://arxiv.org/pdf/1611.05431.pdf)
+  - ResNeXt -> Combine ideas from inception and resnet -> Each residual block itself has multiple paths that are split up.
+* Residual Networks Behave Like Ensembles of Relatively Shallow Networks [[link]](https://arxiv.org/pdf/1605.06431.pdf)
+  - ResNets act much more like ensembles than deep networks -> ablation of some layers does not significantly degrade performance suggesting that layers are somewhat independent of each other
+  - Most of the gradient goes along shorter paths -> longer paths do not contribute much to gradients. The gradient still vanishes over longer paths, but the introduction of shorter paths means the gradient can still reach earlier layers.
 
 ## My Projects
 This section contains references to papers useful for specific projects I have worked on. 
