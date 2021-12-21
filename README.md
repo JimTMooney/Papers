@@ -81,6 +81,9 @@ This section contains generic categories of papers. For initializing my in depth
 * Residual Networks Behave Like Ensembles of Relatively Shallow Networks [[link]](https://arxiv.org/pdf/1605.06431.pdf)
   - ResNets act much more like ensembles than deep networks -> ablation of some layers does not significantly degrade performance suggesting that layers are somewhat independent of each other
   - Most of the gradient goes along shorter paths -> longer paths do not contribute much to gradients. The gradient still vanishes over longer paths, but the introduction of shorter paths means the gradient can still reach earlier layers.
+* Wide Residual Networks [[link]](https://arxiv.org/pdf/1605.07146.pdf)
+  - Experimented with various residual block types->using more convolutions, changing kernel size within a block for computational efficiency, using dropout
+  - As the name implies, increased width by increasing the number of kernel blocks
 
 ## My Projects
 This section contains references to papers useful for specific projects I have worked on. 
