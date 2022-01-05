@@ -4,14 +4,35 @@ A repository to keep track of papers/articles I have read with their correspondi
 ## General Categories
 This section contains generic categories of papers. For initializing my in depth understanding of this field, I lifted several hundred of the first papers-as well as the initial organization of this repo-from https://github.com/maziarraissi/Applied-Deep-Learning (which is a fantastic resource for anyone interested in the field of deep learning).
 
-### Optimization
+### Optimization/Initialization
 * An overview of gradient descent algorithms [[link]](https://ruder.io/optimizing-gradient-descent/)
   - Batch/stochastic/mini-batch stochastic for different dataset sizes
   - Momentum/Nesterov to solve for ill-conditioning for cost in parameter-space
   - Adagrad/rmsprop/adadelta to solve for sparse parameter updates
   - Adam to solve for both simultaneously
+* Large Scale Distributed Deep Networks [[link]](https://papers.nips.cc/paper/2012/file/6aca97005c68f1206823815f66102863-Paper.pdf)
+  - Introduced distbelief-basically model parallelism which partitions a network so as to minimize communication
+  - Used downpour sgd (a variant of asynchronous gradient descent), which also shards the parameters on the parameter server (this way a given processor needs only interact with the server instance[s] holding its particular subset of parameters). 
+* Accurate, Large Minibatch SGD: Training ImageNet in 1 Hour [[link]](https://arxiv.org/pdf/1706.02677.pdf)
+  - Larger batch sizes work well, until around ~8k images (so they train with this on many cores for speedup
+  - They also use linear scaling w.r.t the batch size and find that applying a warmup of the learning rate in the first few epochs leads to better performance
+* One weird trick for parallelizing convolutional neural networks [[link]](https://arxiv.org/pdf/1404.5997.pdf)
+  - Proposes that model parallelism should be used in fc layers, data parallelism in conv layers
+* SGDR: STOCHASTIC GRADIENT DESCENT WITH WARM RESTARTS [[link]](https://arxiv.org/pdf/1608.03983.pdf)
+  - Decay learning rates according to cosine annealing (or other learning rate decay strategy), then reset to high value. Leads to faster convergence
+  - Can be used in conjunction with snapshot ensembles
+* SNAPSHOT ENSEMBLES: TRAIN 1, GET M FOR FREE [[link]](https://arxiv.org/pdf/1704.00109.pdf)
+  - While training network, take snapshots of weights after relatively converging, then use snapshots as ensemble (reminiscent of MCMC methods)
+* Decoupled Weight Decay Regularization [[link]](https://arxiv.org/pdf/1711.05101.pdf)
+  - Adaptive gradient methods also scale the L_2 norm so the L_2 is not equivalent to weight decay.
+  - Their solution, AdamW, remedies this by moving l2 regularization into the update itself, rather than keeping it in the loss function
 
-### Regularization/Augmentation/Initialization
+
+### Regularization/Augmentation
+* mixup: BEYOND EMPIRICAL RISK MINIMIZATION [[link]](https://arxiv.org/pdf/1710.09412.pdf)
+  - Interpolate between images to perform a kind of augmentation.
+  - Extends vicinal risk minimization between gaussian additive noise to be between instances
+
 
 ### Image Classification
 * Multi-column Deep Neural Networks for Image Classification [[link]](https://arxiv.org/pdf/1202.2745.pdf)
@@ -84,6 +105,20 @@ This section contains generic categories of papers. For initializing my in depth
 * Wide Residual Networks [[link]](https://arxiv.org/pdf/1605.07146.pdf)
   - Experimented with various residual block types->using more convolutions, changing kernel size within a block for computational efficiency, using dropout
   - As the name implies, increased width by increasing the number of kernel blocks
+* Inception-v4, Inception-ResNet and the Impact of Residual Connections on Learning [[link]](https://arxiv.org/pdf/1602.07261.pdf)
+  - Uses a version of an inception module as the residual block
+  - Used a reduction inception block for decreasing dimensionality
+* Residual Attention Network for Image Classification [[link]](https://arxiv.org/pdf/1704.06904.pdf)
+
+
+* Spatial Transformer Networks [[link]](https://arxiv.org/pdf/1506.02025.pdf)
+  - 
+
+### Video Classification
+* Large-scale Video Classification with Convolutional Neural Networks [[link]](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/42455.pdf)
+  - Applied traditional CNN's to video. Used Sports-1M dataset. Tried several variants. One was single frame. One used only 2 frames, then joined them with concatenation. One treated whole video as 4d tensor. One used intermediate between other two-gradually accumulated more global temporal information over time. 
+  - They also included a foveal-peripheral trick where they used a focused center and a interpolated larger image in two separate streams that then get reconnected (this, in addition to being somewhate biologically plausible, also had the added benefit of reducing computation).
+
 
 ## My Projects
 This section contains references to papers useful for specific projects I have worked on. 
